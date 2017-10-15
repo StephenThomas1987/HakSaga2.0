@@ -1,13 +1,12 @@
 #include <vector>
-#include<string>
+#include <string>
+#include <iostream>
+#include <fstream>
 using namespace std;
 class Node
 {
 public:
-	Node();
 	Node(int xPos, int yPos, Node *pN);
-
-	~Node();
 	int x;
 	int y;
 	Node * previousNode;
@@ -16,22 +15,17 @@ public:
 class DungeonClass
 {
 public:
-	DungeonClass();
-	~DungeonClass();
 	const char Wall = '#';
 	const char ExploredFloor = '_';
 	const char UnexploredFloor = '.';
 	const char Item = '<';
 	const char Player = '&';
 	const char Start = 's';
-	Node node;
 	vector<string> dungeonArray;
-	vector<Node*>nodesToCheck;
-	//file in/out. for reading the dungeon from file
+	vector<Node*> nodesToCheck;
 	void markPath(Node* node);
 	void loadDungeon();
 	void outputDungeon();
 	void BFS();
-
 	int check(Node* node);
 };
