@@ -23,10 +23,20 @@ void DungeonClass::outputDungeon()
 	{
 		for (int j = 0; j < dungeonArray[i].size(); j++)
 		{
-			cout << dungeonArray[i][j];
+			colourChar(dungeonArray[i][j]);
 		}
 		cout << endl;
 	}
+	usleep(100000);
+}
+
+void DungeonClass::colourChar(char c)
+{
+	if(c == '#') printf("%s%c", KRED, c);
+	else if(c == Player) printf("%s%c", KGRN, c);
+	else if(c == UnexploredFloor) printf("%s%c", KYEL, c);
+	else if(c == ExploredFloor) printf("%s%c", KGRN, c);
+	else printf("%s%c", KNRM, c);
 }
 
 void DungeonClass::BFS()
@@ -68,11 +78,9 @@ int DungeonClass::check(Node* node)
 
 void DungeonClass::markPath(Node* node)
 {
-	//cout << 1 << endl;//debugstuff
 	while (node != NULL)
 	{
 		dungeonArray[node->x][node->y] = 'X';
-
 		node = node->previousNode;
 	}
 }
